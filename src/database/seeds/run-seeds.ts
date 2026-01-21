@@ -1,6 +1,6 @@
 import { AppDataSource } from '../data-source';
 import { seedPermissions } from './1700000000000-PermissionsSeed';
-import { seedRootUser } from './1700000000001-RootUserSeed';
+import { seedUsers } from './1700000000001-RootUserSeed';
 
 async function runSeeds() {
   try {
@@ -10,8 +10,8 @@ async function runSeeds() {
     await seedPermissions(AppDataSource);
     console.log('Permissions seeded successfully');
 
-    await seedRootUser(AppDataSource);
-    console.log('Root user seeded successfully');
+    await seedUsers(AppDataSource);
+    console.log('Users seeded successfully');
 
     await AppDataSource.destroy();
     console.log('Seeds completed successfully');

@@ -37,10 +37,7 @@ export class ArticlesController {
   @ApiResponse({ status: 400, description: 'Bad request' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiResponse({ status: 403, description: 'Forbidden - Admin or Editor only' })
-  create(
-    @Body() createArticleDto: CreateArticleDto,
-    @CurrentUser() user: any,
-  ) {
+  create(@Body() createArticleDto: CreateArticleDto, @CurrentUser() user: any) {
     return this.articlesService.create(createArticleDto, user.id);
   }
 
@@ -73,7 +70,10 @@ export class ArticlesController {
   @ApiResponse({ status: 200, description: 'Article updated successfully' })
   @ApiResponse({ status: 400, description: 'Bad request' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only edit own articles unless Admin' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only edit own articles unless Admin',
+  })
   @ApiResponse({ status: 404, description: 'Article not found' })
   update(
     @Param('id') id: string,
@@ -94,7 +94,10 @@ export class ArticlesController {
   @ApiParam({ name: 'id', description: 'Article UUID' })
   @ApiResponse({ status: 200, description: 'Article deleted successfully' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only delete own articles unless Admin' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only delete own articles unless Admin',
+  })
   @ApiResponse({ status: 404, description: 'Article not found' })
   remove(@Param('id') id: string, @CurrentUser() user: any) {
     return this.articlesService.remove(id, user.id, user.permission);

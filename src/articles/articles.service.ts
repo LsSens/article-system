@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Article } from '../entities/article.entity';
@@ -15,7 +19,10 @@ export class ArticlesService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createArticleDto: CreateArticleDto, userId: string): Promise<Article> {
+  async create(
+    createArticleDto: CreateArticleDto,
+    userId: string,
+  ): Promise<Article> {
     const author = await this.userRepository.findOne({
       where: { id: userId },
     });
@@ -81,7 +88,11 @@ export class ArticlesService {
     return this.articleRepository.save(article);
   }
 
-  async remove(id: string, userId: string, userPermission: string): Promise<void> {
+  async remove(
+    id: string,
+    userId: string,
+    userPermission: string,
+  ): Promise<void> {
     const article = await this.findOne(id);
 
     if (userPermission !== 'admin' && article.authorId !== userId) {

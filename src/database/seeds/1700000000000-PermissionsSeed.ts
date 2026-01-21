@@ -7,11 +7,13 @@ export async function seedPermissions(dataSource: DataSource): Promise<void> {
   const permissions = [
     {
       name: 'admin',
-      description: 'Permission to administer articles and users. Actions: Read, Create, Edit and Delete articles and users.',
+      description:
+        'Permission to administer articles and users. Actions: Read, Create, Edit and Delete articles and users.',
     },
     {
       name: 'editor',
-      description: 'Permission to administer articles. Actions: Read, Create, Edit and Delete articles.',
+      description:
+        'Permission to administer articles. Actions: Read, Create, Edit and Delete articles.',
     },
     {
       name: 'reader',

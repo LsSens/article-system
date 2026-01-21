@@ -35,11 +35,24 @@ The system will automatically:
 - Run migrations
 - Seed permissions and root user
 
-### Default Root User
+### Default Users
 
-- Email: `root@admin.com`
-- Password: `root123`
+Three users are created automatically with different permissions:
+
+**Admin User:**
+- Email: `admin@example.com`
+- Password: `admin123`
 - Permission: Admin
+
+**Editor User:**
+- Email: `editor@example.com`
+- Password: `editor123`
+- Permission: Editor
+
+**Reader User:**
+- Email: `reader@example.com`
+- Password: `reader123`
+- Permission: Reader
 
 ## API Documentation
 
@@ -71,8 +84,8 @@ You can test all endpoints directly from the Swagger UI. To authenticate:
 - `GET /articles` - List all articles (Admin, Editor, Reader)
 - `GET /articles/:id` - Get article by ID (Admin, Editor, Reader)
 - `POST /articles` - Create new article (Admin, Editor)
-- `PATCH /articles/:id` - Update article (Admin, Editor - own articles only)
-- `DELETE /articles/:id` - Delete article (Admin, Editor - own articles only)
+- `PATCH /articles/:id` - Update article (Admin can update any article, Editor can only update articles they created)
+- `DELETE /articles/:id` - Delete article (Admin can delete any article, Editor can only delete articles they created)
 
 ### Permissions (Admin only)
 
@@ -80,8 +93,8 @@ You can test all endpoints directly from the Swagger UI. To authenticate:
 
 ## Permissions
 
-- **Admin**: Full access to users and articles
-- **Editor**: Full access to articles (can only edit/delete own articles)
+- **Admin**: Full access to users and articles (can edit/delete any article)
+- **Editor**: Can create articles and can only edit/delete articles they created
 - **Reader**: Read-only access to articles
 
 ## Technology Stack

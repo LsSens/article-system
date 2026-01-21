@@ -71,13 +71,13 @@ You can test all endpoints directly from the Swagger UI. To authenticate:
 
 - `POST /auth/login` - Login and get JWT token
 
-### Users (Admin only)
+### Users
 
-- `GET /users` - List all users
-- `GET /users/:id` - Get user by ID
-- `POST /users` - Create new user
-- `PATCH /users/:id` - Update user
-- `DELETE /users/:id` - Delete user
+- `GET /users` - List all users (Admin only)
+- `GET /users/:id` - Get user by ID (Admin can access any user, others can only access own data)
+- `POST /users` - Create new user (Admin only)
+- `PATCH /users/:id` - Update user (Admin can update any user, others can only update own data)
+- `DELETE /users/:id` - Delete user (Admin can delete any user, others can only delete own data)
 
 ### Articles
 
@@ -93,9 +93,13 @@ You can test all endpoints directly from the Swagger UI. To authenticate:
 
 ## Permissions
 
-- **Admin**: Full access to users and articles (can edit/delete any article)
+- **Admin**: Full access to users and articles
+  - Can list, view, create, update and delete any user
+  - Can edit/delete any article
 - **Editor**: Can create articles and can only edit/delete articles they created
+  - Can view and update own user data
 - **Reader**: Read-only access to articles
+  - Can view and update own user data
 
 ## Technology Stack
 
